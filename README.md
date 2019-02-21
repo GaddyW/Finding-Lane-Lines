@@ -57,4 +57,4 @@ For assigning line segments to left and right lane markers - as I mentioend, I u
 For extrapolating the line - I would move up to a second or third order polynomial regression to be able to account for curvature in the lane.
 
 For the polygon mask - I'm still wrestling with this one.  At the least, our mask should start at the bottom of the image around our camera.  The question is, how to move it up the image.  A slowly contracting polygon doesn't work for every driving condition.  
-Another potential improvement could be to ...
+

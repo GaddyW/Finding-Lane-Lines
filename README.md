@@ -25,15 +25,15 @@ My pipeline consists of the following steps:
 3)  Canny, to identify points of significant color transition in the image that could identify a lane marker.
 
 4)  Masking - We're only interested in the region of the image that could be a lane marker.  So, to simplify our work and to reduce the potential number of irrelevant line segments that would be identified by the Hough transform, we focus only on the symmetric trapezoid directly in front of the camera. (In the discussion below, I'll reflect on the shortcomings of this method.  But for now, with straight road segments, it works).
-![alt text][CannyMask]
+![alt text][image1]
 
 5)  Hough transform to find lines from the point cloud we've created in the previous steps.
-![alt text][Hough]
+![alt text][image2]
 
 6)  Assign the lines from the Hough transform to either the right or the left lane markers.  Rather than rewrite draw_lines(), I simply added the code to the pipeline.  You will find it in the notebook directly after the Hough transform.  If a line has negative slope and its points are to the left of the polygon mask's midpoint, it is assigned to the left lane marker.  If a line has positive slope and its points are to the right of the polygon's midpoint, it is assigned to the right lane marker.  
 
 7) Draw a line the full length of the lane marker.  To do this, I decompose all of the lines associated with each lane marker to their constituent points (These are stored in the lists left_x[], left_y[], right_x[], right_y[]).  I then run a 1st order linear regression on the points using polyfit to calculate a line of function y=mx+b for the left and right lane markers.  I then draw these from their y-intercepts on the original image.
-![alt text][SolidMarker]
+![alt text][image3]
 
 
 
